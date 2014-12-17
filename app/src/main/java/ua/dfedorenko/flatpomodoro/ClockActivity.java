@@ -1,7 +1,7 @@
 package ua.dfedorenko.flatpomodoro;
 
-import android.app.Activity;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 
 
 
@@ -24,6 +23,9 @@ public class ClockActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        ActionBar actionBar = getActionBar();
+        assert actionBar != null;
+        actionBar.hide();
     }
 
 
@@ -40,10 +42,7 @@ public class ClockActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
     /**
@@ -57,8 +56,7 @@ public class ClockActivity extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_clock, container, false);
-            return rootView;
+            return inflater.inflate(R.layout.fragment_clock, container, false);
         }
     }
 }
